@@ -5,7 +5,8 @@ spark = SparkSession.builder \
     .appName("tryingThingsOut") \
     .getOrCreate()
 
-df = spark.read.format("csv").option("header",True).option("inferSchema",True).load("data/trips_2018")
+path = "data/trips_2018"
+df = spark.read.format("csv").option("header",True).option("inferSchema",True).load(path)
 
 df.printSchema()
 

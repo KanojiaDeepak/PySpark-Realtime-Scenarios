@@ -8,8 +8,8 @@ spark = SparkSession.builder \
 
 #if there are no headers in CSV and we have dynamic number of columns,
 #read it as text format and then use split function to do create columns dynamically
-
-df = spark.read.format("text").load("data/dynamic_cols_data.csv")
+path = "data/dynamic_cols_data.csv"
+df = spark.read.format("text").load(path)
 
 df = df.withColumn("split_col",split("value",",")).drop("value")
 no_of_columns=df.select(max(size("split_col"))).collect()[0][0]
